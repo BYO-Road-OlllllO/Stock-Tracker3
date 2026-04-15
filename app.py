@@ -7,7 +7,7 @@ import plotly.graph_objs as go
 from datetime import date
 
 # Set the timeframe for historical data
-START_DATE = "2024-01-01"
+START_DATE = "2026-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
 # App Layout & Title
