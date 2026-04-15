@@ -51,20 +51,28 @@ plot_raw_data()
 st.subheader('🔮 Market Trend Projections')
 st.write('Calculating projections based on historical momentum and seasonal trends...')
 
-# Prepare the data frame for Prophet (Requires 'ds' for Date and 'y' for values)
-df_train = data[['Date','Close']].copy()
-df_train = df_train.rename(columns={"Date": "ds", "Close": "y"})
+# Prepare the data frame for Prophet
+df_train = pd.DataFrame()
+df_train['ds'] = data['Date']
 
-# ==========================================
-# THE FIX: Strip timezone data from the dates
-# ==========================================
+# 1. Safely extract the 'Close' column (handles yfinance's new nested format)
+close_data = data['Close']
+if isinstance(close_data, pd.DataFrame):
+    close_data = close_data.iloc[:, 0] # Grab the first column if it's a nested DataFrame
+
+# 2. Force the data to be numeric
+df_train['y'] = pd.to_numeric(close_data, errors='coerce')
+
+# 3. Strip timezone data from the dates
 if df_train['ds'].dt.tz is not None:
     df_train['ds'] = df_train['ds'].dt.tz_localize(None)
+
+# 4. Drop any missing values (Prophet will crash on fit() if it sees NaNs)
+df_train = df_train.dropna()
 
 # Initialize and fit the Prophet model
 m = Prophet(daily_seasonality=True)
 m.fit(df_train)
-
 # Create future dates and predict
 future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
