@@ -54,7 +54,8 @@ st.write('Calculating projections based on historical momentum and seasonal tren
 # Prepare the data frame for Prophet (Requires 'ds' for Date and 'y' for values)
 df_train = data[['Date','Close']].copy()
 df_train = df_train.rename(columns={"Date": "ds", "Close": "y"})
-
+if df_train['ds'].dt.tz is not None:
+    df_train['ds'] = df_train['ds'].dt.tz_localize(None)
 # Initialize and fit the Prophet model
 m = Prophet(daily_seasonality=True)
 m.fit(df_train)
