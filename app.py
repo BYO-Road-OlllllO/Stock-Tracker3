@@ -7,7 +7,7 @@ import plotly.graph_objs as go
 from datetime import date
 
 # Set the timeframe for historical data
-START_DATE = "2020-01-01"
+START_DATE = "2024-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
 # App Layout & Title
@@ -15,7 +15,7 @@ st.set_page_config(page_title="Portfolio Tracker & Projector", layout="wide")
 st.title('📈 Portfolio Tracker & Market Projector')
 
 # Pre-populated portfolio 
-portfolio = ['VOO', 'SCHD', 'JEPI', 'JEPQ', 'SOFI', 'XOVR', 'PSEC']
+portfolio = ['AI',	'BAC',	'BCTK',	'CSX',	'DAN',	'FSTA',	'FTEC',	'GOOG',	'GOOGL',	'JEPQ',	'LUV',	'MITT',	'PSKY',	'RIVN',	'Ronb',	'SCHD',	'SCHY',	'TSLA',	'VOO',	'WBD',	'XOVR',	'AAL',	'AFL',	'AKA',	'ARQQ',	'ASTI',	'BBAI',	'BCTX',	'BITF',	'BKYI',	'Bud',	'CAVA',	'CRNT',	'FDIS',	'FHLC',	'GME',	'HIMS',	'Hive',	'HOOD',	'HSDT',	'IHRT',	'IONQ',	'IWM',	'JNJ',	'JPM',	'K',	'KULR',	'LLY',	'MARA',	'MSTR',	'NFLX',	'NXST',	'OXY',	'PHIO',	'PLTR',	'PSEC',	'QBTS',	'QQQ',	'QUBT',	'RCAT',	'RGTI',	'RIME',	'SBET',	'SERV',	'SFTBY',	'SIDU',	'SIRI',	'SMR',	'SOFI',	'SOUN',	'SPY',	'TSM',	'UUUU',	'VRSN',	'VTI',	'VXUS',	'WKEY',	'ZONE',]
 
 # Sidebar controls
 st.sidebar.header("Configuration")
